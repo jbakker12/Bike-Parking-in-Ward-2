@@ -16,7 +16,7 @@
         </style>
     </head>
     <body>
-        <header><h1 class="text-center">Bike Racks in Hamilton, ON</h1></header>
+        <header><h1 class="text-center">Bike Racks in Ward 2</h1></header>
         <div class="container">
             <div class="row justify-content-center">
                 <button type="button" class="btn btn-success col-1 m-2">Covered?</button>
@@ -40,6 +40,7 @@
     <script>
         let map;
         let city_hall;
+        let markers = [];
 
         function initMap(){
             let city_hall_location = {lat: 43.25553671879013, lng: -79.8733365689005}; 
@@ -66,27 +67,33 @@
             anchor: city_hall,
             shouldFocus: false,
         });
-    }
-        initMap();
-
-        function showMarkers(){
-            for(let i=0;i<bikeRacks.length;i++){  
+        for(let i=0;i<bikeRacks.length;i++){  
                 const icon_content = document.createElement("img");
                 icon_content.src = "http://maps.google.com/mapfiles/kml/paddle/grn-blank.png";
                           
-                let newMarker = new google.maps.marker.AdvancedMarkerElement(
+                let new_marker = new google.maps.marker.AdvancedMarkerElement(
                     {
                         map: map,
-                        position: {lat: bikeRacks[i].X,
-                                   lng: bikeRacks[i].Y}, 
-                        title: bikeRacks[i].LOCATION_NAME,
-                        content: icon_content,
+                        position: {lat: bikeRacks[i].LATITUDE,
+                                   lng: bikeRacks[i].LONGITUDE}, 
+                        title: bikeRacks[i].NAME,
+                        // content: icon_content,
                     }
                 )
+                markers.push(new_marker);
+            }
+    }
+        initMap();
+
+        function showAll(){
+            for (i = 0; i < bikeRacks.length; i++) 
+            {
+                markers[i].position = {lat: bikeRacks[i].LATITUDE,  
+                                       lng: bikeRacks[i].LONGITUDE };
             }
         }
-
-        showMarkers();
+        
+        showAll();
         //focus on this after
         function showInfoWindow(address,capacity,lighting,secured){
             const infowindow = new google.maps.InfoWindow({
