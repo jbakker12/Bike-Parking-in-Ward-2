@@ -70,13 +70,17 @@
         initMap();
 
         function showMarkers(){
-            for(let i=0;i<bikeRacks.length;i++){                
+            for(let i=0;i<bikeRacks.length;i++){  
+                const icon_content = document.createElement("img");
+                icon_content.src = "http://maps.google.com/mapfiles/kml/paddle/grn-blank.png";
+                          
                 let newMarker = new google.maps.marker.AdvancedMarkerElement(
                     {
                         map: map,
                         position: {lat: bikeRacks[i].X,
                                    lng: bikeRacks[i].Y}, 
                         title: bikeRacks[i].LOCATION_NAME,
+                        content: icon_content,
                     }
                 )
             }
