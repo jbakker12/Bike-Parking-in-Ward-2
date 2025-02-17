@@ -41,18 +41,28 @@
         let city_hall;
 
         function initMap(){
-            let city_hall_location = {lat: 43.25595063537777, lng: -79.87345973939227};
+            let city_hall_location = {lat: 43.25553671879013, lng: -79.8733365689005}; 
             map = new google.maps.Map(document.getElementById("map"), 
                 {center: city_hall_location,
                 zoom: 13,
                 mapId: "b3ba59e296c74729"
             });
+
         city_hall = new google.maps.marker.AdvancedMarkerElement({
         map: map,
         position: city_hall_location,
         title: "City Hall",  // will appear when we hover over the marker
       })
-        }
+        contentString = "City Hall Hamilton";
+        const infowindow = new google.maps.InfoWindow({
+            content: contentString,
+        });
+
+        infowindow.open({
+            anchor: city_hall,
+            shouldFocus: true,
+        });
+    }
         initMap();
     </script>
 </html>
