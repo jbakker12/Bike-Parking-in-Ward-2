@@ -19,13 +19,13 @@
         <header><h1 class="text-center">Bike Racks in Ward 2</h1></header>
         <div class="container">
             <div class="row justify-content-center">
-                <button type="button" class="btn btn-success col-1 m-2">Covered?</button>
-                <button type="button" class="btn btn-success col-1 m-2">Lighting?</button>
-                <button type="button" class="btn btn-success col-1 m-2">Secured?</button>
-                <button type="button" class="btn btn-success col-1 m-2">Capacity 10+</button>
+                <button type="button" class="btn btn-success col-1 m-2" id="covered" onclick="showCovered()">Covered?</button>
+                <button type="button" class="btn btn-success col-1 m-2" id="lighting">Lighting?</button>
+                <button type="button" class="btn btn-success col-1 m-2" id="secured">Secured?</button>
+                <button type="button" class="btn btn-success col-1 m-2" id="capacity">Capacity 10+</button>
                 <div class="col-5"></div>
-                <button type="button" class="btn btn-primary col-1 m-2">Add a Rack</button>
-                <button type="button" class="btn btn-primary col-1 m-2">Get Directions</button>
+                <button type="button" class="btn btn-primary col-1 m-2" id="addRack">Add a Rack</button>
+                <button type="button" class="btn btn-primary col-1 m-2" id="directions">Get Directions</button>
             </div>
 
         </div>
@@ -77,16 +77,17 @@
                         position: {lat: bikeRacks[i].LATITUDE,
                                    lng: bikeRacks[i].LONGITUDE}, 
                         title: bikeRacks[i].NAME,
-                        // content: icon_content,
                     }
                 )
+
                 markers.push(new_marker);
+        
             }
     }
         initMap();
 
         function showAll(){
-            for (i = 0; i < bikeRacks.length; i++) 
+            for (let i = 0; i < bikeRacks.length; i++) 
             {
                 markers[i].position = {lat: bikeRacks[i].LATITUDE,  
                                        lng: bikeRacks[i].LONGITUDE };
@@ -94,7 +95,27 @@
         }
         
         showAll();
-        //focus on this after
+
+        //covered
+        function showCovered(){
+               for (let i = 0; i < bikeRacks.length; i++){
+                    if (bikeRacks[i].COVERED == "No")
+                    markers[i].position = {lat: bikeRacks[i].LATITUDE,  
+                                           lng: bikeRacks[i].LONGITUDE};
+                    else 
+                    markers[i].position = null;
+            }
+        }
+        
+
+        //lighting
+    
+
+        //secured
+
+        //capacity
+
+        //infowindow
         function showInfoWindow(address,capacity,lighting,secured){
             const infowindow = new google.maps.InfoWindow({
             content: contentString,
