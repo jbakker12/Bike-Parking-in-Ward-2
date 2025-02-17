@@ -20,15 +20,15 @@
         <div class="container">
             <div class="row justify-content-center">
                 <button type="button" class="btn btn-success col-1 m-2" id="covered" onclick="showCovered()">Covered?</button>
-                <button type="button" class="btn btn-success col-1 m-2" id="lighting">Lighting?</button>
-                <button type="button" class="btn btn-success col-1 m-2" id="secured">Secured?</button>
-                <button type="button" class="btn btn-success col-1 m-2" id="capacity">Capacity 10+</button>
+                <button type="button" class="btn btn-success col-1 m-2" id="lighting" onclick="showLighting()">Lighting?</button>
+                <button type="button" class="btn btn-success col-1 m-2" id="secured" onclick="showSecured()">Secured?</button>
+                <button type="button" class="btn btn-success col-1 m-2" id="capacity"onclick="showCapacity()">Capacity 10+</button>
                 <button type="button" class="btn btn-warning col-1 m-2" id="showAll" onclick="showAll()">Show All</button>
-                <div class="col-3"></div>
+                <div class="col-2"></div>
+                <button type="button" class="btn btn-primary col-1 m-2" id="geoLocate" onclick="geoLocate()">Geo-Locate</button>
                 <button type="button" class="btn btn-primary col-1 m-2" id="addRack">Add a Rack</button>
                 <button type="button" class="btn btn-primary col-1 m-2" id="directions">Get Directions</button>
             </div>
-
         </div>
         <div class="d-flex align-items-center justify-content-center">
             <div id="map" class="p-2 m-2 bg-info text-black shadow rounded-2">Flex item</div>
@@ -63,10 +63,11 @@
         const infowindow = new google.maps.InfoWindow({
             content: contentString,
         });
-
+        city_hall.addEventListener("click", function(){
         infowindow.open({
             anchor: city_hall,
             shouldFocus: false,
+        })
         });
         for(let i=0;i<bikeRacks.length;i++){  
                 const icon_content = document.createElement("img");
@@ -80,7 +81,7 @@
                         title: bikeRacks[i].NAME,
                     }
                 )
-
+                new_marker.addEventListener("click", showInfoWindow(bikeRacks[i].ID));
                 markers.push(new_marker);
         
             }
@@ -98,10 +99,9 @@
         showAll();
 
         //covered
-        var coveredBool = false;
         function showCovered(){
             for (let i = 0; i < bikeRacks.length; i++){
-                if (bikeRacks[i].COVERED == "No")
+                if (bikeRacks[i].COVERED == "Yes")
                     markers[i].position = {lat: bikeRacks[i].LATITUDE,  
                                         lng: bikeRacks[i].LONGITUDE};
                 else 
@@ -111,20 +111,69 @@
         
 
         //lighting
+        function showLighting(){
+            for (let i = 0; i < bikeRacks.length; i++){
+                if (bikeRacks[i].LIGHTING == "Yes")
+                    markers[i].position = {lat: bikeRacks[i].LATITUDE,  
+                                        lng: bikeRacks[i].LONGITUDE};
+                else 
+                    markers[i].position = null;
+            }
+        }
     
 
         //secured
+        function showSecured(){
+            for (let i = 0; i < bikeRacks.length; i++){
+                if (bikeRacks[i].SECURED == "Yes")
+                    markers[i].position = {lat: bikeRacks[i].LATITUDE,  
+                                        lng: bikeRacks[i].LONGITUDE};
+                else 
+                    markers[i].position = null;
+            }
+        }
 
         //capacity
+        function showCapacity(){
+            for (let i = 0; i < bikeRacks.length; i++){
+                if (bikeRacks[i].CAPACITY >= 10)
+                    markers[i].position = {lat: bikeRacks[i].LATITUDE,  
+                                        lng: bikeRacks[i].LONGITUDE};
+                else 
+                    markers[i].position = null;
+            }
+        }
+
+        //geolocation
+
+        function showLocation(position){
+            const icon_content = document.createElement("img");
+            icon_content.src = "http://maps.google.com/mapfiles/kml/shapes/poi.png";
+
+            // create a marker centered at the user's location
+            let user_location = new google.maps.marker.AdvancedMarkerElement({
+                map: map,
+                position: { lat: position.coords.latitude, 
+                            lng: position.coords.longitude},
+                title: "Your Location",  // will appear when we hover over the marker
+                content: icon_content
+            }); 
+        }
+        function geoLocate(){
+            navigator.geolocation.getCurrentPosition(showLocation);
+        }
 
         //infowindow
-        function showInfoWindow(address,capacity,lighting,secured){
+        function showInfoWindow(id){
             const infowindow = new google.maps.InfoWindow({
-            content: contentString,
+            content: "Address: " + markers[id].ADDRESS
+                    + "\nCapacity: " + markers[id].CAPACITY
+                    + "\nLighting: " + markers[id].LIGHTING
+                    + "\nSecured: " + markers[id].SECURED,
             });
 
             infowindow.open({
-                anchor: "",
+                anchor: markers[id],
                 shouldFocus: false,
             });
         }
