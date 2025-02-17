@@ -34,17 +34,24 @@
         
         <footer>&copy; Jacob Bakker | Mohawk College | 000947416</footer>
     </body>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKfRWtzDT20CjCu_547U5ibcr9a7X8eWw&loading=async&callback=initMap&libraries=maps&v=beta" defer>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKfRWtzDT20CjCu_547U5ibcr9a7X8eWw&loading=async&callback=initMap&libraries=marker&v=beta" defer>
     </script>
     <script>
         let map;
+        let city_hall;
 
         function initMap(){
+            let city_hall_location = {lat: 43.25595063537777, lng: -79.87345973939227};
             map = new google.maps.Map(document.getElementById("map"), 
-                {center: { lat: 43.2387, lng: -79.8881 },
-                zoom: 12,
+                {center: city_hall_location,
+                zoom: 13,
                 mapId: "b3ba59e296c74729"
             });
+        city_hall = new google.maps.marker.AdvancedMarkerElement({
+        map: map,
+        position: city_hall_location,
+        title: "City Hall",  // will appear when we hover over the marker
+      })
         }
         initMap();
     </script>
