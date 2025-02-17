@@ -23,7 +23,8 @@
                 <button type="button" class="btn btn-success col-1 m-2" id="lighting">Lighting?</button>
                 <button type="button" class="btn btn-success col-1 m-2" id="secured">Secured?</button>
                 <button type="button" class="btn btn-success col-1 m-2" id="capacity">Capacity 10+</button>
-                <div class="col-5"></div>
+                <button type="button" class="btn btn-warning col-1 m-2" id="showAll" onclick="showAll()">Show All</button>
+                <div class="col-3"></div>
                 <button type="button" class="btn btn-primary col-1 m-2" id="addRack">Add a Rack</button>
                 <button type="button" class="btn btn-primary col-1 m-2" id="directions">Get Directions</button>
             </div>
@@ -97,12 +98,13 @@
         showAll();
 
         //covered
+        var coveredBool = false;
         function showCovered(){
-               for (let i = 0; i < bikeRacks.length; i++){
-                    if (bikeRacks[i].COVERED == "No")
+            for (let i = 0; i < bikeRacks.length; i++){
+                if (bikeRacks[i].COVERED == "No")
                     markers[i].position = {lat: bikeRacks[i].LATITUDE,  
-                                           lng: bikeRacks[i].LONGITUDE};
-                    else 
+                                        lng: bikeRacks[i].LONGITUDE};
+                else 
                     markers[i].position = null;
             }
         }
