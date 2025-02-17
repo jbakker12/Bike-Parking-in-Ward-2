@@ -68,5 +68,34 @@
         });
     }
         initMap();
+
+        function showMarkers(){
+            for(let i=0;i<bikeRacks.length;i++){                
+                let newMarker = new google.maps.marker.AdvancedMarkerElement(
+                    {
+                        map: map,
+                        position: {lat: bikeRacks[i].X,
+                                   lng: bikeRacks[i].Y}, 
+                        title: bikeRacks[i].LOCATION_NAME,
+                    }
+                )
+            }
+        }
+
+        showMarkers();
+        //focus on this after
+        function showInfoWindow(address,capacity,lighting,secured){
+            const infowindow = new google.maps.InfoWindow({
+            content: contentString,
+            });
+
+            infowindow.open({
+                anchor: "",
+                shouldFocus: false,
+            });
+        }
+
+        
+        //onclick => showInfoWindow() (see example from class)
     </script>
 </html>
