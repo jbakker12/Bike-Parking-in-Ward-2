@@ -63,7 +63,7 @@
         const infowindow = new google.maps.InfoWindow({
             content: contentString,
         });
-        city_hall.addEventListener("click", function(){
+        city_hall.addEventListener("gmp-click", function(){
         infowindow.open({
             anchor: city_hall,
             shouldFocus: false,
@@ -81,7 +81,7 @@
                         title: bikeRacks[i].NAME,
                     }
                 )
-                new_marker.addEventListener("click", showInfoWindow(bikeRacks[i].ID));
+                new_marker.addEventListener("gmp-click", showInfoWindow(i));
                 markers.push(new_marker);
         
             }
@@ -165,14 +165,15 @@
 
         //infowindow
         function showInfoWindow(id){
+            let contentString = "Address: " + bikeRacks[id].ADDRESS
+                    + "\nCapacity: " + bikeRacks[id].CAPACITY
+                    + "\nLighting: " + bikeRacks[id].LIGHTING
+                    + "\nSecured: " + bikeRacks[id].SECURED;
             const infowindow = new google.maps.InfoWindow({
-            content: "Address: " + markers[id].ADDRESS
-                    + "\nCapacity: " + markers[id].CAPACITY
-                    + "\nLighting: " + markers[id].LIGHTING
-                    + "\nSecured: " + markers[id].SECURED,
+                content: contentString, 
             });
 
-            infowindow.open({
+            infowindow.open(map,{
                 anchor: markers[id],
                 shouldFocus: false,
             });
