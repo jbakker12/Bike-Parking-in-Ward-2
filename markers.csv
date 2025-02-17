@@ -1,31 +1,31 @@
-X,Y,OBJECTID,LOCATION_NAME,ADDRESS,RACK_OWNER,RACKS_INSTALLED,RACK_TYPE,TOTAL_CAPACITY,COVERED,NEARBY_LIGHTING,WARD,EXTERNAL_,LATITUDE,LONGITUDE
-592452.878,4789812.141,9,Goodwill Career Centre,"225 King William St",Private ,1,Multi-Ring,6,No,Yes,2,Yes,43.255447,-79.861
-592311.5543,4789781.594,10,Social Planning and Research Council of Hamilton ,Walnut and King William,Private ,1,Multi-Ring,6,No,Yes,2,Yes,43.255244,-79.86277
-591728.8701,4790222.108,52,Coppley Noyes & Randall Wholesale Clothing - ,"56 York Blvd, Hamilton",ROW,1,Hammer Hoop,6,No,Yes,2,Yes,43.259283,-79.86991
-591536.9567,4790287.234,56,Salvation Army,"101 York Boulevard, Hamilton",ROW,1,Hammer Hoop,10,No,Yes,2,Yes,43.259711,-79.87194
-591909.0615,4789021.692,90,Woolverton Park,90 Charlton Avenue East,Park,1,Hammer Hoop,10,No,Yes,2,Yes,43.248361,-79.8679
-592438.9411,4791490.19,98,Bennetto Community Centre,450 Hughson Street North,Municipal,1,Multi-Ring,8,No,Yes,2,Yes,43.270556,-79.86089
-591609.7685,4791302.6,99,Bayfront Park,200 Harbour Front Drive,Park,5,Hammer Hoop,10,No,Yes,2,Yes,43.269,-79.871
-592417.6191,4790016.595,100,Beasley Community Centre,"145 Wilson Street, Hamilton",Municipal,2,Multi-Ring,14,No,Yes,2,Yes,43.257292,-79.8614
-592589.0898,4789170.762,101,Central Memorial Recreation Centre,"93 West Avenue South, Hamilton",Municipal,1,Multi-Ring,14,No,No,2,Yes,43.249656,-79.85943
-592597.7756,4789188.763,102,Central Memorial Recreation Centre,"93 West Avenue South, Hamilton",Municipal,1,Multi-Ring,8,No,Yes,2,Yes,43.249817,-79.85932
-592542.4951,4789074.713,103,Carter Park,32 Stinson Street,Park,1,Multi-Ring,16,No,Yes,2,Yes,43.248797,-79.86002
-591731.8068,4789581.671,162,GO Station,36 Hunter Street East,ROW,2,Multi-Ring,28,Yes,Yes,2,Yes,43.25351,-79.8699
-592173.9563,4791866.677,359,The Royal Hamilton Yacht Club,bay n,Private ,1,Multi-Ring,10,No,No,2,Yes,43.274017,-79.86403
-592010.6526,4790002.551,411,Secure Facility - Fire Station No. 1 - Fire Station Employees only,33 John Street North,Municipal,2,Other,8,Yes,Yes,2,Yes,,
-592340.8505,4791779.427,419,Hamilton Port Authority,605 James St N,Private,1,Multi-Ring,14,No,No,2,Yes,43.273172,-79.86205
-592046.1996,4790997.502,462,West Harbour GO Station,"353 James Street N., Hamilton, ON",Private,1,Multi-Ring,28,Yes,Yes,2,Yes,,
-592051.8886,4790991.462,463,West Harbour GO Station,"353 James Street N., Hamilton, ON",Private,1,Multi-Ring,28,Yes,Yes,2,Yes,,
-591853.0945,4789547.77,565,Hamilton GO Centre,36 Hunter St. E,Private,2,Multi-Ring,28,Yes,Yes,2,Yes,,
-591452.8571,4789723.786,582,City Hall Secure Bike Parking Facility,71 Main Street West,Municipal,1,Other,31,Yes,Yes,2,Yes,,
-591767.9172,4790065.357,583,Jackson Square East Parking Garage Secure Bike Parking,2 King Street West,Private,1,Other,25,Yes,Yes,2,Yes,,
-592092.2754,4789694.972,586,Effort Trust,105 Main St E,ROW,2,Hammer Hoop,4,Yes,Yes,2,Yes,,
-592102.3214,4789669.378,646,Landmark Place,100 Main Street East,ROW,1,Hammer Hoop,4,No,No,2,Yes,,
-591798.253,4790277.255,678,York Boulevard Parkade - Secure Bike Cage,28 York Boulevard,Secure,1,Other,43,Yes,Yes,2,Yes,,
-592012.2038,4790059.061,679,Horizon Utilities - Secure Bike Parking,55 John Street,Private,1,Other,10,Yes,Yes,2,Yes,,
-591870.5222,4790053.67,680,Lister Block - Secure Bike Parking,28 James Street North,Secure,1,Other,20,Yes,Yes,2,Yes,,
-591529.3093,4789956.844,681,Summer's Lane - Secure Bike Parking,80 Summer's Lane,Secure,1,Other,16,Yes,Yes,2,Yes,,
-591429.0657,4790237.339,682,Government of Canada - Secure Bike Parking,55 Bay Street,Private,1,Other,20,Yes,Yes,2,Yes,,
-591549.8865,4788978.222,683,St. Joseph's Hospital - For St. Joe's Employees ONLY,50 Charlton Avenue East,Private,1,Other,12,Yes,Yes,2,Yes,,
-592010.4378,4791813.28,690,Leander Boat Club,50 Leander Drive,Private,1,Multi-Ring,12,No,No,2,Yes,,
-592818.369,4791673.133,762,Eastwood Arena & Park,111 Burlington Street East,Park,1,Multi-Ring,12,Yes,Yes,2,Yes,,
+X,Y,LOCATION_NAME,ADDRESS,TOTAL_CAPACITY,COVERED,NEARBY_LIGHTING
+592452.878,4789812.141,Goodwill Career Centre,225 King William St,6,No,Yes
+592311.5543,4789781.594,Social Planning and Research Council of Hamilton ,Walnut and King William,6,No,Yes
+591728.8701,4790222.108,Coppley Noyes & Randall Wholesale Clothing - ,"56 York Blvd, Hamilton",6,No,Yes
+591536.9567,4790287.234,Salvation Army,"101 York Boulevard, Hamilton",10,No,Yes
+591909.0615,4789021.692,Woolverton Park,90 Charlton Avenue East,10,No,Yes
+592438.9411,4791490.19,Bennetto Community Centre,450 Hughson Street North,8,No,Yes
+591609.7685,4791302.6,Bayfront Park,200 Harbour Front Drive,10,No,Yes
+592417.6191,4790016.595,Beasley Community Centre,"145 Wilson Street, Hamilton",14,No,Yes
+592589.0898,4789170.762,Central Memorial Recreation Centre,"93 West Avenue South, Hamilton",14,No,No
+592597.7756,4789188.763,Central Memorial Recreation Centre,"93 West Avenue South, Hamilton",8,No,Yes
+592542.4951,4789074.713,Carter Park,32 Stinson Street,16,No,Yes
+591731.8068,4789581.671,GO Station,36 Hunter Street East,28,Yes,Yes
+592173.9563,4791866.677,The Royal Hamilton Yacht Club,bay n,10,No,No
+592010.6526,4790002.551,Secure Facility - Fire Station No. 1 - Fire Station Employees only,33 John Street North,8,Yes,Yes
+592340.8505,4791779.427,Hamilton Port Authority,605 James St N,14,No,No
+592046.1996,4790997.502,West Harbour GO Station,"353 James Street N., Hamilton, ON",28,Yes,Yes
+592051.8886,4790991.462,West Harbour GO Station,"353 James Street N., Hamilton, ON",28,Yes,Yes
+591853.0945,4789547.77,Hamilton GO Centre,36 Hunter St. E,28,Yes,Yes
+591452.8571,4789723.786,City Hall Secure Bike Parking Facility,71 Main Street West,31,Yes,Yes
+591767.9172,4790065.357,Jackson Square East Parking Garage Secure Bike Parking,2 King Street West,25,Yes,Yes
+592092.2754,4789694.972,Effort Trust,105 Main St E,4,Yes,Yes
+592102.3214,4789669.378,Landmark Place,100 Main Street East,4,No,No
+591798.253,4790277.255,York Boulevard Parkade - Secure Bike Cage,28 York Boulevard,43,Yes,Yes
+592012.2038,4790059.061,Horizon Utilities - Secure Bike Parking,55 John Street,10,Yes,Yes
+591870.5222,4790053.67,Lister Block - Secure Bike Parking,28 James Street North,20,Yes,Yes
+591529.3093,4789956.844,Summer's Lane - Secure Bike Parking,80 Summer's Lane,16,Yes,Yes
+591429.0657,4790237.339,Government of Canada - Secure Bike Parking,55 Bay Street,20,Yes,Yes
+591549.8865,4788978.222,St. Joseph's Hospital - For St. Joe's Employees ONLY,50 Charlton Avenue East,12,Yes,Yes
+592010.4378,4791813.28,Leander Boat Club,50 Leander Drive,12,No,No
+592818.369,4791673.133,Eastwood Arena & Park,111 Burlington Street East,12,Yes,Yes
