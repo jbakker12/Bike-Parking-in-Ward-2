@@ -58,12 +58,12 @@
       })
         contentString = "<h5>Hamilton City Hall</h5>" 
                         + "71 Main St W" 
-                        + "\nHamilton, ON L8P 4Y5";
+                        + "\nHamilton, ON L8P 4Y5eee";
 
         const infowindow = new google.maps.InfoWindow({
             content: contentString,
         });
-        city_hall.addEventListener("gmp-click", function(){
+        city_hall.addEventListener("click", function(){
         infowindow.open({
             anchor: city_hall,
             shouldFocus: false,
@@ -72,17 +72,31 @@
         for(let i=0;i<bikeRacks.length;i++){  
                 const icon_content = document.createElement("img");
                 icon_content.src = "http://maps.google.com/mapfiles/kml/paddle/grn-blank.png";
-                          
+                let title = bikeRacks[i].NAME;
                 let new_marker = new google.maps.marker.AdvancedMarkerElement(
                     {
                         map: map,
                         position: {lat: bikeRacks[i].LATITUDE,
                                    lng: bikeRacks[i].LONGITUDE}, 
-                        title: bikeRacks[i].NAME,
+                        title: title, //why is title not showing?
                     }
                 )
-                new_marker.addEventListener("gmp-click", showInfoWindow(i));
-                markers.push(new_marker);
+
+                contentString = "<h5>"+title+"</h5>"
+                            + "<b>Address:</b>" + bikeRacks[i].ADDRESS
+                            + "<br /><b>Capacity:</b> " + bikeRacks[i].CAPACITY
+                            + "<br /><b>Lighting:</b> " + bikeRacks[i].LIGHTING
+                            + "<br /><b>Secured:</b> " + bikeRacks[i].SECURED;
+                    const infowindow2 = new google.maps.InfoWindow({
+                        content: contentString, 
+                    });
+
+                new_marker.addEventListener("click", function (){
+                    infowindow2.open({
+                        anchor: new_marker,
+                        shouldFocus: false,
+                    });});
+                    markers.push(new_marker);
         
             }
     }
@@ -164,20 +178,6 @@
         }
 
         //infowindow
-        function showInfoWindow(id){
-            let contentString = "Address: " + bikeRacks[id].ADDRESS
-                    + "\nCapacity: " + bikeRacks[id].CAPACITY
-                    + "\nLighting: " + bikeRacks[id].LIGHTING
-                    + "\nSecured: " + bikeRacks[id].SECURED;
-            const infowindow = new google.maps.InfoWindow({
-                content: contentString, 
-            });
-
-            infowindow.open(map,{
-                anchor: markers[id],
-                shouldFocus: false,
-            });
-        }
 
         
         //onclick => showInfoWindow() (see example from class)
