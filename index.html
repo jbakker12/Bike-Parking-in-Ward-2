@@ -13,6 +13,23 @@
             .footer{
                 justify-content: center;
             }
+            .form-popup{
+                position:absolute;
+                top: 44%;
+                left: 80%;
+                transform: translate(-50%,-50%);
+                background-color: white;
+                width: 380px;
+                padding: 20px 30px;
+                box-shadow: 2px 2px 5px 5px rgba(0,0,0,0.15);
+                border-radius: 10px;
+            }
+            .addMarkerBtn{
+                background-color: grey;
+            }
+            .btn-cancel{
+                background-color: grey;
+            }
         </style>
     </head>
     <body>
@@ -24,15 +41,59 @@
                 <button type="button" class="btn btn-success col-1 m-2" id="secured" onclick="showSecured()">Secured?</button>
                 <button type="button" class="btn btn-success col-1 m-2" id="capacity"onclick="showCapacity()">Capacity 10+</button>
                 <button type="button" class="btn btn-warning col-1 m-2" id="showAll" onclick="showAll()">Show All</button>
-                <div class="col-2"></div>
+                <div class="col-3"></div>
                 <button type="button" class="btn btn-primary col-1 m-2" id="geoLocate" onclick="geoLocate()">Geo-Locate</button>
-                <button type="button" class="btn btn-primary col-1 m-2" id="addRack">Add a Rack</button>
-                <button type="button" class="btn btn-primary col-1 m-2" id="directions">Get Directions</button>
+                <button type="button" class="btn btn-primary col-1 m-2" id="addRack" onclick="addMarker()">Add a Rack</button>
             </div>
         </div>
         <div class="d-flex align-items-center justify-content-center">
             <div id="map" class="p-2 m-2 bg-info text-black shadow rounded-2">Flex item</div>
         </div>
+        <div class="form-popup" id="myForm">
+            <form action="/markers.js" class="form-container">
+              <h1>Add a marker</h1>
+            
+              <!-- name -->
+              <br><label for="name"><b>Location Name</b></label>
+              <input type="text" placeholder="Enter location Name" name="name" required>
+          
+              <!-- Street Name-->
+              <br><label for="address"><b>Street Address</b></label>
+              <input type="text" placeholder="Enter street address" name="address" required>
+
+              <!-- city -->
+              <br><label for="city"><b>City</b></label>
+              <input type="text" placeholder="Enter city" name="city" required>
+
+              <!-- capcity -->
+              <br><label for="capacity"><b>Capacity</b></label>
+              <input type="number" placeholder="Enter capacity of rack" name="capacity" required>
+
+              <!-- covered (radio) -->
+              <br><label for="covered"><b>Covered?</b></label>
+              <input type="radio" id="yesCovered" name="covered" value="Yes">
+              <label for="yesCovered">Yes</label>
+              <input type="radio" id="notCovered" name="covered" value="No">
+              <label for="notCovered">No</label>
+
+              <!-- lighting (radio) -->
+              <br><label for="lighting"><b>Lighting?</b></label>
+              <input type="radio" id="yesLighting" name="lighting" value="Yes">
+              <label for="yesLighting">Yes</label>
+              <input type="radio" id="noLighting" name="lighting" value="No">
+              <label for="noLighting">No</label>
+
+              <!-- seucred (radio) -->
+              <br><label for="secured"><b>Secured?</b></label>
+              <input type="radio" id="secure" name="secured" value="Yes">
+              <label for="secure">Yes</label>
+              <input type="radio" id="notSecure" name="secured" value="No">
+              <label for="notSecure">No</label><br>
+          
+              <button type="submit" class="addMarkerBtn" onclick="closeForm()">Add marker</button>
+              <button type="button" class="btn-cancel" onclick="closeForm()">Exit</button>
+            </form>
+          </div>
         
         <footer>&copy; Jacob Bakker | Mohawk College | 000947416</footer>
     </body>
@@ -87,7 +148,7 @@
                             + "<br /><b>Capacity:</b> " + bikeRacks[i].CAPACITY
                             + "<br /><b>Lighting:</b> " + bikeRacks[i].LIGHTING
                             + "<br /><b>Secured:</b> " + bikeRacks[i].SECURED
-                            + "<br />" + "<a target='blank' href="+directionLink+">Directions</a>";
+                            + "<br />" + "<a target='blank' href="+directionLink+">Get Directions</a>";
                     const infowindow2 = new google.maps.InfoWindow({
                         content: contentString, 
                     });
@@ -183,9 +244,16 @@
             
         }
         
-        function displayForm(){
-            
+        function addMarker(){
+            alert("Click on the map to add a new marker");
         }
-        //onclick => showInfoWindow() (see example from class)
+
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
     </script>
 </html>
