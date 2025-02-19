@@ -78,26 +78,26 @@
                         map: map,
                         position: {lat: bikeRacks[i].LATITUDE,
                                    lng: bikeRacks[i].LONGITUDE}, 
-                        title: title, //why is title not showing?
+                        title: title,
                     }
                 )
-
-                contentString = "<h5>"+title+"</h5>"
-                            + "<b>Address:</b>" + bikeRacks[i].ADDRESS
+                let directionLink = getDirections(bikeRacks[i].LATITUDE, bikeRacks[i].LONGITUDE);
+                contentString = "<h5>"+ title +"</h5>"
+                            + "<b>Address:</b> " + bikeRacks[i].ADDRESS
                             + "<br /><b>Capacity:</b> " + bikeRacks[i].CAPACITY
                             + "<br /><b>Lighting:</b> " + bikeRacks[i].LIGHTING
-                            + "<br /><b>Secured:</b> " + bikeRacks[i].SECURED;
+                            + "<br /><b>Secured:</b> " + bikeRacks[i].SECURED
+                            + "<br />" + "<a target='blank' href="+directionLink+">Directions</a>";
                     const infowindow2 = new google.maps.InfoWindow({
                         content: contentString, 
                     });
-
+                
                 new_marker.addEventListener("click", function (){
                     infowindow2.open({
                         anchor: new_marker,
                         shouldFocus: false,
                     });});
                     markers.push(new_marker);
-        
             }
     }
         initMap();
@@ -163,7 +163,6 @@
         function showLocation(position){
             const icon_content = document.createElement("img");
             icon_content.src = "http://maps.google.com/mapfiles/kml/shapes/poi.png";
-
             // create a marker centered at the user's location
             let user_location = new google.maps.marker.AdvancedMarkerElement({
                 map: map,
@@ -173,13 +172,20 @@
                 content: icon_content
             }); 
         }
+
         function geoLocate(){
+            const location = navigator.geolocation.getCurrentPosition(showLocation);
             navigator.geolocation.getCurrentPosition(showLocation);
         }
 
-        //infowindow
-
+        function getDirections(lat,lng){
+            return "https://www.google.com/maps/dir/?api=1&destination="+lat+","+lng;
+            
+        }
         
+        function displayForm(){
+            
+        }
         //onclick => showInfoWindow() (see example from class)
     </script>
 </html>
