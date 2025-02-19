@@ -25,10 +25,14 @@
                 border-radius: 10px;
             }
             .addMarkerBtn{
-                background-color: grey;
+                background-color: lightgreen;
+                border-radius: 5px;
+                margin-top: 5px;
             }
             .btn-cancel{
-                background-color: grey;
+                background-color: lightgray;
+                border-radius: 5px;
+                margin-top: 5px;
             }
         </style>
     </head>
@@ -89,7 +93,7 @@
               <label for="secure">Yes</label>
               <input type="radio" id="notSecure" name="secured" value="No">
               <label for="notSecure">No</label><br>
-          
+                
               <button type="submit" class="addMarkerBtn" onclick="closeForm()">Add marker</button>
               <button type="button" class="btn-cancel" onclick="closeForm()">Exit</button>
             </form>
@@ -100,6 +104,7 @@
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKfRWtzDT20CjCu_547U5ibcr9a7X8eWw&loading=async&callback=initMap&libraries=marker&v=beta" defer>
     </script>
     <script>
+        window.onload=closeForm();
         let map;
         let city_hall;
         let markers = [];
@@ -246,6 +251,7 @@
         
         function addMarker(){
             alert("Click on the map to add a new marker");
+            openForm();
         }
 
         function openForm() {
