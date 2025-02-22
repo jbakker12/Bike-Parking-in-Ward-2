@@ -1,3 +1,28 @@
+let id = 14;
+
+function receiveMarkerData(event){
+        event.preventDefault();
+        id++;
+        // Gather form data
+        const form = document.getElementById('addMarkerForm');
+        const formData = new FormData(form);
+
+        const markerData = {
+            ID: id,
+            NAME: formData.get('name'),
+            ADDRESS: formData.get('address'),
+            CITY: formData.get('city'),
+            CAPACITY: formData.get('capacity'),
+            COVERED: formData.get('covered') || "No",
+            LIGHTING: formData.get('lighting') || "No",
+            SECURED: formData.get('secured') || "No"
+        };
+        let output = JSON.stringify(markerData,null,2);
+        console.log(output);
+        bikeRacks.push(markerData);
+        console.log(bikeRacks);
+}
+
 
 const bikeRacks = [
     {

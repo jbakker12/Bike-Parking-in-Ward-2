@@ -49,12 +49,15 @@
                 <button type="button" class="btn btn-primary col-1 m-2" id="geoLocate" onclick="geoLocate()">Geo-Locate</button>
                 <button type="button" class="btn btn-primary col-1 m-2" id="addRack" onclick="addMarker()">Add a Rack</button>
             </div>
+            <div class="row justify-content-center" id="messageLine">
+                <p>Click on the map to select the new marker location</p>
+            </div>
         </div>
         <div class="d-flex align-items-center justify-content-center">
             <div id="map" class="p-2 m-2 bg-info text-black shadow rounded-2">Flex item</div>
         </div>
         <div class="form-popup" id="myForm">
-            <form action="/markers.js" class="form-container">
+            <form class="form-container" id="addMarkerForm">
               <h1>Add a marker</h1>
             
               <!-- name -->
@@ -94,7 +97,7 @@
               <input type="radio" id="notSecure" name="secured" value="No">
               <label for="notSecure">No</label><br>
                 
-              <button type="submit" class="addMarkerBtn" onclick="closeForm()">Add marker</button>
+              <button type="submit" class="addMarkerBtn" onclick="submitForm()">Add marker</button>
               <button type="button" class="btn-cancel" onclick="closeForm()">Exit</button>
             </form>
           </div>
@@ -105,6 +108,7 @@
     </script>
     <script>
         window.onload=closeForm();
+        window.onload = messageLine.style = "display: none";
         let map;
         let city_hall;
         let markers = [];
@@ -250,8 +254,7 @@
         }
         
         function addMarker(){
-            alert("Click on the map to add a new marker");
-            openForm();
+            openForm();         
         }
 
         function openForm() {
@@ -260,6 +263,11 @@
 
         function closeForm() {
             document.getElementById("myForm").style.display = "none";
+        }     
+        
+        function submitForm(){
+            receiveMarkerData();
+            // closeForm();
         }
     </script>
 </html>
