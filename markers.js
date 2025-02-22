@@ -1,5 +1,12 @@
+// StAuth10244: I Jacob Bakker, 000947416 certify that this material is my original work. 
+// No other person's work has been used without due acknowledgement. 
+// I have not made my work available to anyone else.
+
 let id = 14;
 
+// This function retrieves data from the 'Add Marker Form' and puts it into JSON format
+// **NOTE: this is as far as I could get and am having issues getting this to work succesfully** 
+//@param event: used to prevent page from refreshing automatically
 function receiveMarkerData(event){
         event.preventDefault();
         id++;
@@ -23,7 +30,7 @@ function receiveMarkerData(event){
         console.log(bikeRacks);
 }
 
-
+//An array of JSON style markers of bike racks and their details
 const bikeRacks = [
     {
         "ID": 0,

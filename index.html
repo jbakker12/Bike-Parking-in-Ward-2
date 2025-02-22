@@ -1,3 +1,8 @@
+<!-- 
+StAuth10244: I Jacob Bakker, 000947416 certify that this material is my original work. 
+No other person's work has been used without due acknowledgement. 
+I have not made my work available to anyone else." -->
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +18,7 @@
             .footer{
                 justify-content: center;
             }
+            /* settings for the 'Add Marker Form' */
             .form-popup{
                 position:absolute;
                 top: 44%;
@@ -38,24 +44,23 @@
     </head>
     <body>
         <header><h1 class="text-center">Bike Racks in Ward 2</h1></header>
+        <!-- Row of Buttons Above Map -->
         <div class="container">
-            <div class="row justify-content-center">
-                <button type="button" class="btn btn-success col-1 m-2" id="covered" onclick="showCovered()">Covered?</button>
-                <button type="button" class="btn btn-success col-1 m-2" id="lighting" onclick="showLighting()">Lighting?</button>
-                <button type="button" class="btn btn-success col-1 m-2" id="secured" onclick="showSecured()">Secured?</button>
-                <button type="button" class="btn btn-success col-1 m-2" id="capacity"onclick="showCapacity()">Capacity 10+</button>
-                <button type="button" class="btn btn-warning col-1 m-2" id="showAll" onclick="showAll()">Show All</button>
-                <div class="col-3"></div>
-                <button type="button" class="btn btn-primary col-1 m-2" id="geoLocate" onclick="geoLocate()">Geo-Locate</button>
-                <button type="button" class="btn btn-primary col-1 m-2" id="addRack" onclick="addMarker()">Add a Rack</button>
-            </div>
-            <div class="row justify-content-center" id="messageLine">
-                <p>Click on the map to select the new marker location</p>
+            <div class="row justify-content-between">
+                <button type="button" class="btn btn-success col-1 m-1" id="covered" onclick="showCovered()">Covered?</button>
+                <button type="button" class="btn btn-success col-1 m-1" id="lighting" onclick="showLighting()">Lighting?</button>
+                <button type="button" class="btn btn-success col-1 m-1" id="secured" onclick="showSecured()">Secured?</button>
+                <button type="button" class="btn btn-success col-1 m-1" id="capacity"onclick="showCapacity()">Capacity 10+</button>
+                <button type="button" class="btn btn-warning col-1 m-1" id="showAll" onclick="showAll()">Show All</button>
+                <button type="button" class="btn btn-primary col-1 m-1" id="geoLocate" onclick="geoLocate()">Geo-Locate</button>
+                <button type="button" class="btn btn-primary col-1 m-1" id="addRack" onclick="addMarker()">Add a Rack</button>
             </div>
         </div>
+        <!-- GOOGLE MAP LOADS HERE -->
         <div class="d-flex align-items-center justify-content-center">
             <div id="map" class="p-2 m-2 bg-info text-black shadow rounded-2">Flex item</div>
         </div>
+        <!-- 'Add Marker' Pop-up Form -->
         <div class="form-popup" id="myForm">
             <form class="form-container" id="addMarkerForm">
               <h1>Add a marker</h1>
@@ -107,13 +112,16 @@
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKfRWtzDT20CjCu_547U5ibcr9a7X8eWw&loading=async&callback=initMap&libraries=marker&v=beta" defer>
     </script>
     <script>
-        window.onload=closeForm();
-        window.onload = messageLine.style = "display: none";
+        window.onload=closeForm(); //ensures 'Add Marker Form' is closed on page load
         let map;
         let city_hall;
         let markers = [];
 
+        //This function creates the Default Map, and includes the infowindow for the centre location (Hamilton City Hall)
+        //It then goes on to load each marker from 'markers.js' onto the map
+        //The infoWindow details from each of the markers is formatted and the infoWindows are setup
         function initMap(){
+            //Default map settings
             let city_hall_location = {lat: 43.25553671879013, lng: -79.8733365689005}; 
             map = new google.maps.Map(document.getElementById("map"), 
                 {center: city_hall_location,
@@ -133,16 +141,17 @@
         const infowindow = new google.maps.InfoWindow({
             content: contentString,
         });
+        //click event for marker that opens infoWindow
         city_hall.addEventListener("click", function(){
         infowindow.open({
             anchor: city_hall,
             shouldFocus: false,
         })
         });
+        //loading all of the markers from markers.js
         for(let i=0;i<bikeRacks.length;i++){  
-                const icon_content = document.createElement("img");
-                icon_content.src = "http://maps.google.com/mapfiles/kml/paddle/grn-blank.png";
-                let title = bikeRacks[i].NAME;
+                let title = bikeRacks[i].NAME; //title for marker
+                //new marker intialized
                 let new_marker = new google.maps.marker.AdvancedMarkerElement(
                     {
                         map: map,
@@ -151,27 +160,34 @@
                         title: title,
                     }
                 )
+                //directions link from Google Maps created
                 let directionLink = getDirections(bikeRacks[i].LATITUDE, bikeRacks[i].LONGITUDE);
+                //content string is formatted for the marker
                 contentString = "<h5>"+ title +"</h5>"
                             + "<b>Address:</b> " + bikeRacks[i].ADDRESS
                             + "<br /><b>Capacity:</b> " + bikeRacks[i].CAPACITY
                             + "<br /><b>Lighting:</b> " + bikeRacks[i].LIGHTING
                             + "<br /><b>Secured:</b> " + bikeRacks[i].SECURED
-                            + "<br />" + "<a target='blank' href="+directionLink+">Get Directions</a>";
+                            + "<br />" + "<a target='blank' href="+directionLink+">Get Directions</a>"; //direction link is added to contentString
+                    //infoWindow is created for the marker
                     const infowindow2 = new google.maps.InfoWindow({
                         content: contentString, 
                     });
-                
+                //click event created for the marker to open infoWindow
                 new_marker.addEventListener("click", function (){
                     infowindow2.open({
                         anchor: new_marker,
                         shouldFocus: false,
                     });});
-                    markers.push(new_marker);
+
+                markers.push(new_marker);//new marker added to the 'markers' array
             }
-    }
+        }
+
+        //map and markers loaded
         initMap();
 
+        //This function shows all bike racks and is activated when the 'Show All' button is clicked
         function showAll(){
             for (let i = 0; i < bikeRacks.length; i++) 
             {
@@ -179,10 +195,9 @@
                                        lng: bikeRacks[i].LONGITUDE };
             }
         }
-        
-        showAll();
 
-        //covered
+         //This function shows all bike racks that are covered
+         //It is activated when the 'Covered' button is clicked
         function showCovered(){
             for (let i = 0; i < bikeRacks.length; i++){
                 if (bikeRacks[i].COVERED == "Yes")
@@ -194,7 +209,8 @@
         }
         
 
-        //lighting
+        //This function shows all bike racks with lighting
+        //It is activated when the 'Lighting' button is clicked
         function showLighting(){
             for (let i = 0; i < bikeRacks.length; i++){
                 if (bikeRacks[i].LIGHTING == "Yes")
@@ -206,7 +222,8 @@
         }
     
 
-        //secured
+        //This function shows all bike racks that have secured storage facilities
+        //It is activated when the 'Secured' button is clicked
         function showSecured(){
             for (let i = 0; i < bikeRacks.length; i++){
                 if (bikeRacks[i].SECURED == "Yes")
@@ -217,7 +234,8 @@
             }
         }
 
-        //capacity
+        //This function shows all bike racks that have a capacity greater than 10
+        //It is activated when the 'Capacity 10+' button is clicked
         function showCapacity(){
             for (let i = 0; i < bikeRacks.length; i++){
                 if (bikeRacks[i].CAPACITY >= 10)
@@ -228,11 +246,10 @@
             }
         }
 
-        //geolocation
-
+       //This function creates the new marker for the user's location
         function showLocation(position){
             const icon_content = document.createElement("img");
-            icon_content.src = "http://maps.google.com/mapfiles/kml/shapes/poi.png";
+            icon_content.src = "http://maps.google.com/mapfiles/kml/shapes/poi.png"; //unique green marker for user location
             // create a marker centered at the user's location
             let user_location = new google.maps.marker.AdvancedMarkerElement({
                 map: map,
@@ -243,31 +260,38 @@
             }); 
         }
 
+        //This function retrieves the users location and displays it on the map via the showLocation() function
+        //It is activated when the 'Geo-locate' button is clicked
         function geoLocate(){
-            const location = navigator.geolocation.getCurrentPosition(showLocation);
             navigator.geolocation.getCurrentPosition(showLocation);
         }
 
+        //This function generates the directions link for each marker
         function getDirections(lat,lng){
             return "https://www.google.com/maps/dir/?api=1&destination="+lat+","+lng;
             
         }
         
+        //This function opens up the 'Add Marker Form'
         function addMarker(){
             openForm();         
         }
 
+        //This function displays the 'Add Marker Form' as it was hidden onload
         function openForm() {
             document.getElementById("myForm").style.display = "block";
         }
 
+        //This function closes the 'Add Marker Form'
         function closeForm() {
             document.getElementById("myForm").style.display = "none";
         }     
         
+        //This function reterives the data from the 'Add Marker Form'
+        //It then adds it to the bikeRacks array in 'markers.js' and closes the pop-up form
         function submitForm(){
             receiveMarkerData();
-            // closeForm();
+            closeForm();
         }
     </script>
 </html>
